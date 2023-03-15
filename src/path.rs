@@ -15,6 +15,7 @@ pub trait SeekAndRead: Seek + Read {}
 impl<T> SeekAndRead for T where T: Seek + Read {}
 
 /// Type of file
+#[cfg_attr(feature = "serde", derive(serde::Deserialize, serde::Serialize))]
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 pub enum VfsFileType {
     /// A plain file

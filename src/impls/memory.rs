@@ -16,6 +16,7 @@ use std::sync::{Arc, RwLock};
 type MemoryFsHandle = Arc<RwLock<MemoryFsImpl>>;
 
 /// An ephemeral in-memory file system, intended mainly for unit tests
+#[cfg_attr(feature = "serde", derive(serde::Deserialize, serde::Serialize))]
 pub struct MemoryFS {
     handle: MemoryFsHandle,
 }
@@ -249,6 +250,7 @@ impl FileSystem for MemoryFS {
     }
 }
 
+#[cfg_attr(feature = "serde", derive(serde::Deserialize, serde::Serialize))]
 struct MemoryFsImpl {
     files: HashMap<String, MemoryFile>,
 }
@@ -268,6 +270,7 @@ impl MemoryFsImpl {
     }
 }
 
+#[cfg_attr(feature = "serde", derive(serde::Deserialize, serde::Serialize))]
 struct MemoryFile {
     file_type: VfsFileType,
     #[allow(clippy::rc_buffer)] // to allow accessing the same object as writable
