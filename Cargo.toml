@@ -15,6 +15,7 @@ travis-ci = { repository = "manuel-woelker/rust-vfs", branch = "master" }
 [dependencies]
 rust-embed = { version = "6.3.*", optional = true }
 rust-embed-impl = { version = "6.2.*", optional = true }
+serde = { version = "1.0.*", features = ["derive"], optional = true }
 
 [dev-dependencies]
 uuid = { version = "=0.8.1", features = ["v4"] }
@@ -24,6 +25,7 @@ anyhow = "1.0.58"
 [features]
 embedded-fs = ["rust-embed", "rust-embed-impl"]
 export-test-macros = []
+serde = ["dep:serde"]
 
 [package.metadata.docs.rs]
-features = ["embedded-fs"]
+features = ["embedded-fs", "serde"]
